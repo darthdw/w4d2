@@ -1,0 +1,9 @@
+<h1> LOOK AT THESE CATS! </h1>
+
+<% @cats.each do |cat| %>
+  <ul>
+    <li>
+      <%= link_to "Check Out #{cat.name}", cat_url(cat) %>
+    </li>
+  </ul>
+<% end %>

@@ -1,0 +1,39 @@
+<h1>
+<%= @cat.name.capitalize %>
+</h1>
+
+<%= button_to "Edit Cat", edit_cat_url(@cat), method: :get %>
+
+<table>
+  <thead>
+    <tr>
+      <th>Attribute</th>
+      <th>Information</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Age</td>
+      <td><%= @cat.age.capitalize %></td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Gender</td>
+      <td><%= @cat.sex == 'm' ? 'Male' : 'Female' %></td>
+    </tr>
+  </tbody>
+  <tbody>
+    <tr>
+      <td>Color</td>
+      <td><%= @cat.color.capitalize %></td>
+    </tr>
+  </tbody>
+</table>
+
+<h3> Cat Description </h3>
+<%= @cat.description %>
+
+<br>
+<br>
+<%= link_to "Back to Cat List", cats_url %>

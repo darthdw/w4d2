@@ -1,0 +1,53 @@
+    <!-- Pick method and url
+    pre-populate when present
+    fix submission name at end -->
+
+  <% if action == :edit %>
+    <% form_url = cat_url(cat) %>
+  <% else %>
+    <% form_url = cats_url %>
+  <% end %>
+
+<form action="<%= form_url %>" method="post">
+  <% if action == :edit %>
+    <input type="hidden" name="_method" value="PATCH">
+  <% end %>
+
+<label> Cat Name
+<input type='text' id="Name" name="cat[name]" value="<%= cat.name %>" >
+</label>
+
+<br><br>
+
+<label> Cat Gender
+<br>
+
+Male <input type="radio" name='cat[sex]' value="m" <%= cat.sex == 'm' || cat.sex.nil? ? "checked" : "" %> >
+Female <input type="radio" name='cat[sex]' value="f" <%= "checked" if cat.sex == 'f' %>>
+</label>
+<br><br>
+
+<label for="color"> Cat Color </label>
+<select id="color" name='cat[color]' >
+
+<option value="Select Cat Color" disabled="true" <%= cat.color ? "" : "selected" %> >
+  Select Cat Color
+</option>
+
+<% Cat::COLORS.each do |color| %>
+   <option value='<%= color %>' <%= color == cat.color ? "selected" : "" %> >
+      <%= color.capitalize %>
+   </option>
+<% end %>
+</select>
+
+<br><br>
+
+<label for='date'> Birthday </label>
+<input id='date' type='date' name='cat[birthdate]' value='<%= cat.birthdate %>' >
+
+<h3>Description:</h3>
+<textarea name=cat[description]> <%= cat.description %> </textarea>
+
+<input type="submit" value="<%= action == :edit ? 'Edit Cat!' : "Add Cat!" %>">
+</form>
